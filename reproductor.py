@@ -16,10 +16,13 @@ class ReproductorMusica:
         boton_cargar = tk.Button(ventana, text="Cargar música", command=self.cargar_musica)
         boton_cargar.pack()
         hori=["horizontal"]
+        #modulador de volumen
         volumen= tk.Scale(ventana, from_=0, to=100,orient=hori,command=self.set_volumen)
         volumen.pack()
+        #boton pausar
         boton_pausar= tk.Button(ventana, text="pausar", command=self.pausar)
         boton_pausar.pack()
+        #boton play
         boton_reproducir = tk.Button(ventana, text="Reproducir", command=self.reproducir_musica)
         boton_reproducir.pack()
         # Crear la etiqueta para mostrar la ruta seleccionada
@@ -48,17 +51,18 @@ class ReproductorMusica:
         if archivo:
             self.archivo_musica = archivo
             self.mensaje=tk.Label(ventana,text="cancion cargada").pack()
-
+            
+    # Cargar la canción seleccionada y reproducirla
     def reproducir_musica(self):
-        # Cargar la canción seleccionada y reproducirla
+        
         pygame.mixer.music.load(self.archivo_musica)
         pygame.mixer.music.play()
         
-
-    
+    #pausar la reproduccion
     def pausar(self):
          pygame.mixer.music.stop()
          
+    #modulacion de volumen 
     def set_volumen(self, volumen):  
         pygame.mixer.music.set_volume(int(volumen) / 100)
         
